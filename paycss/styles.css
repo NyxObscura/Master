@@ -103,22 +103,21 @@ body {
 
 @media (min-width: 768px) {
     .main-header {
-        justify-content: flex-start;
-        left: 1rem;
-        top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Memastikan elemen sejajar ke kiri */
+        padding-left: 60px; /* Memberikan ruang untuk tombol hamburger */
     }
 
     .hamburger-btn {
-        position: fixed;
-        left: 1rem;
-        top: 1rem;
+        position: static; /* Tombol hamburger tidak fixed, agar sejajar dengan teks */
+        margin-right: 1rem; /* Jarak antara tombol hamburger dan teks "Payment Portal" */
     }
 
     .main-header h1 {
-        margin-left: 2rem; /* Memberikan jarak antara tombol hamburger dan teks "Payment Portal" */
+        margin-left: 0; /* Menghapus margin kiri pada teks "Payment Portal" */
     }
 }
-
 @media (max-width: 767px) {
     .main-header {
         padding-left: 0; /* Menghapus padding pada mode mobile */
