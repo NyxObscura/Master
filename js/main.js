@@ -249,12 +249,17 @@
                 body: JSON.stringify({ email })
             });
 
+            const result = await response.json();
+
             if (!response.ok) {
-                throw new Error('Network response was not ok.');
+                // Menampilkan pesan error yang diberikan oleh backend
+                showPopup(result.error || 'There was a problem submitting your email.', 'error');
+                return;
             }
 
-            const result = await response.json();
-            showPopup('Email berhasil dikirim!', 'success');
+            // Jika sukses, tampilkan pesan berhasil
+            showPopup(result.message || 'Email berhasil disimpan di GitHub!', 'success');
+
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
             showPopup('There was a problem submitting your email. Please try again.', 'error');
@@ -284,7 +289,6 @@ function showPopup(message, type) {
         popup.remove();
     }, 3000);
 }
-
 
    /* Initialize
     * ------------------------------------------------------ */
