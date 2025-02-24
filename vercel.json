@@ -4,13 +4,11 @@
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/services", "destination": "/services.html" },
     { "source": "/blog", "destination": "/blog.html" },
-    { "source": "/payment", "destination": "/payment.html" }
+    { "source": "/payment", "destination": "/payment.html" },
+    { "source": "/(.*)", "destination": "/notfound/index.html" }
   ],
   "redirects": [
-    { "source": "/404", "destination": "/notfound/index.html", "statusCode": 308 }
-  ],
-  "fallback": {
-    "src": "/(.*)", 
-    "dest": "/notfound/index.html"
-  }
+    { "source": "/old-page", "destination": "/new-page", "statusCode": 301 },
+    { "source": "/404", "destination": "/notfound/index.html", "statusCode": 404 }
+  ]
 }
