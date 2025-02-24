@@ -4745,34 +4745,36 @@ td:last-child {
     top: 70px; /* Letakkan di bawah bar pencarian */
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
+    background-color: #3A3B35; /* Warna dengan kontras lebih terang dari #272822 */
     color: white;
-    padding: 8px 15px; /* Ukuran diperkecil */
+    padding: 10px 20px; /* Tambah panjang, tetapi tetap compact */
     border-radius: 3px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     font-family: Arial, sans-serif;
-    font-size: 14px; /* Font lebih kecil */
-    width: auto;
-    max-width: 300px; /* Batasi lebar maksimal */
+    font-size: 14px;
+    width: 250px; /* Lebar lebih kecil */
+    max-width: 90%; /* Tetap responsif di layar kecil */
 }
 
 .custom-popup.success {
-    background-color: #4CAF50;
+    background-color: #3A3B35; /* Warna success lebih terang dari #272822 */
 }
 
 .custom-popup.error {
-    background-color: #f44336;
+    background-color: #3A3B35; /* Warna error sama seperti success */
 }
 
 .custom-popup .close-popup {
     background: none;
     border: none;
     color: white;
-    font-size: 16px; /* Ukuran tombol close lebih kecil */
+    font-size: 18px; /* Perbesar tombol close */
     cursor: pointer;
     padding: 0;
-}
+    line-height: 1;
+		}
