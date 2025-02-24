@@ -104,7 +104,9 @@ body {
 @media (min-width: 768px) {
     .main-header {
         justify-content: flex-start;
-        padding-left: 1px; /* Memberikan ruang untuk tombol hamburger */
+        position: fixed;
+        left: 2rem;
+        top: 1rem;
     }
 
     .hamburger-btn {
