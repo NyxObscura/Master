@@ -9,8 +9,8 @@
   "redirects": [
     { "source": "/404", "destination": "/notfound/index.html", "statusCode": 308 }
   ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/notfound/index.html" }
-  ]
+  "fallback": {
+    "src": "/(.*)", 
+    "dest": "/notfound/index.html"
+  }
 }
