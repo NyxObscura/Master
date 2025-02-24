@@ -7,14 +7,6 @@
 
     'use strict';
 
-    const cfg = {
-
-        // MailChimp URL
-        mailChimpURL : 'https://facebook.us1.list-manage.com/subscribe/post?u=1abf75f6981256963a47d197a&amp;id=37c6d8f4d6' 
-
-    };
-
-
    /* preloader
     * -------------------------------------------------- */
     const ssPreloader = function() {
@@ -144,143 +136,6 @@
 
     }; // end ssSwiper
 
-
-   /* mailchimp form
-    * ---------------------------------------------------- */ 
-    const ssMailChimpForm = function() {
-
-        const mcForm = document.querySelector('#mc-form');
-
-        if (!mcForm) return;
-
-        // Add novalidate attribute
-        mcForm.setAttribute('novalidate', true);
-
-        // Field validation
-        function hasError(field) {
-
-            // Don't validate submits, buttons, file and reset inputs, and disabled fields
-            if (field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') return;
-
-            // Get validity
-            let validity = field.validity;
-
-            // If valid, return null
-            if (validity.valid) return;
-
-            // If field is required and empty
-            if (validity.valueMissing) return 'Please enter an email address.';
-
-            // If not the right type
-            if (validity.typeMismatch) {
-                if (field.type === 'email') return 'Please enter a valid email address.';
-            }
-
-            // If pattern doesn't match
-            if (validity.patternMismatch) {
-
-                // If pattern info is included, return custom error
-                if (field.hasAttribute('title')) return field.getAttribute('title');
-
-                // Otherwise, generic error
-                return 'Please match the requested format.';
-            }
-
-            // If all else fails, return a generic catchall error
-            return 'The value you entered for this field is invalid.';
-
-        };
-
-        // Show error message
-        function showError(field, error) {
-
-            // Get field id or name
-            let id = field.id || field.name;
-            if (!id) return;
-
-            let errorMessage = field.form.querySelector('.mc-status');
-
-            // Update error message
-            errorMessage.classList.remove('success-message');
-            errorMessage.classList.add('error-message');
-            errorMessage.innerHTML = error;
-
-        };
-
-        // Display form status (callback function for JSONP)
-        window.displayMailChimpStatus = function (data) {
-
-            // Make sure the data is in the right format and that there's a status container
-            if (!data.result || !data.msg || !mcStatus ) return;
-
-            // Update our status message
-            mcStatus.innerHTML = data.msg;
-
-            // If error, add error class
-            if (data.result === 'error') {
-                mcStatus.classList.remove('success-message');
-                mcStatus.classList.add('error-message');
-                return;
-            }
-
-            // Otherwise, add success class
-            mcStatus.classList.remove('error-message');
-            mcStatus.classList.add('success-message');
-        };
-
-        // Submit the form 
-        function submitMailChimpForm(form) {
-
-            let url = cfg.mailChimpURL;
-            let emailField = form.querySelector('#mce-EMAIL');
-            let serialize = '&' + encodeURIComponent(emailField.name) + '=' + encodeURIComponent(emailField.value);
-
-            if (url == '') return;
-
-            url = url.replace('/post?u=', '/post-json?u=');
-            url += serialize + '&c=displayMailChimpStatus';
-
-            // Create script with url and callback (if specified)
-            var ref = window.document.getElementsByTagName( 'script' )[ 0 ];
-            var script = window.document.createElement( 'script' );
-            script.src = url;
-
-            // Create global variable for the status container
-            window.mcStatus = form.querySelector('.mc-status');
-            window.mcStatus.classList.remove('error-message', 'success-message')
-            window.mcStatus.innerText = 'Submitting...';
-
-            // Insert script tag into the DOM
-            ref.parentNode.insertBefore( script, ref );
-
-            // After the script is loaded (and executed), remove it
-            script.onload = function () {
-                this.remove();
-            };
-
-        };
-
-        // Check email field on submit
-        mcForm.addEventListener('submit', function (event) {
-
-            event.preventDefault();
-
-            let emailField = event.target.querySelector('#mce-EMAIL');
-            let error = hasError(emailField);
-
-            if (error) {
-                showError(emailField, error);
-                emailField.focus();
-                return;
-            }
-
-            submitMailChimpForm(this);
-
-        }, false);
-
-    }; // end ssMailChimpForm
-
-
    /* alert boxes
     * ------------------------------------------------------ */
     const ssAlertBoxes = function() {
@@ -370,6 +225,45 @@
     }; // end ssMoveTo
 
 
+   /* Newsletter Form Submission
+    * ------------------------------------------------------ */
+    const ssNewsletterForm = function() {
+
+        const mcForm = document.getElementById('mc-form');
+
+        if (!mcForm) return;
+
+        mcForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            let email = document.getElementById('mce-EMAIL').value;
+            if (!email) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            try {
+                const response = await fetch('https://api.obscura.icu/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+
+                const result = await response.json();
+                alert('Email berhasil disimpan di GitHub!');
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('There was a problem submitting your email. Please try again.');
+            }
+        });
+
+    }; // end ssNewsletterForm
+
+
    /* Initialize
     * ------------------------------------------------------ */
     (function ssInit() {
@@ -377,9 +271,9 @@
         ssPreloader();
         ssMobileMenu();
         ssSwiper();
-        ssMailChimpForm();
         ssAlertBoxes();
         ssMoveTo();
+        ssNewsletterForm(); // Initialize newsletter form submission
 
     })();
 
