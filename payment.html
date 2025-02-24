@@ -7,7 +7,7 @@
     <meta name="keywords" content="payment, QRIS, bank transfer, e-wallet, online payment">
     <meta name="author" content="Obscura Team">
     <title>Obscura Payment Portal</title>
-    <link rel="stylesheet" href="paycss/styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -53,8 +53,8 @@
             <section class="payment-methods" id="bank">
                 <h3><i class="fas fa-university"></i> Bank Transfer</h3>
                 <div class="method-card">
-                    <p><strong>Sea Bank:</strong> 901154347570</p>
-                    <p><strong>BCA:</strong> 2650230232</p>
+                    <p><strong>Sea Bank:</strong> 901154347570 <button class="copy-btn" data-clipboard-text="901154347570"><i class="fas fa-copy"></i></button></p>
+                    <p><strong>BCA:</strong> 2650230232 <button class="copy-btn" data-clipboard-text="2650230232"><i class="fas fa-copy"></i></button></p>
                     <p><strong>BRI:</strong> Coming Soon</p>
                 </div>
             </section>
@@ -62,9 +62,9 @@
             <section class="payment-methods" id="ewallet">
                 <h3><i class="fas fa-wallet"></i> E-Wallet</h3>
                 <div class="method-card">
-                    <p><strong>DANA:</strong> 085183343636</p>
-                    <p><strong>GOPAY:</strong> 085183343636</p>
-                    <p><strong>OVO:</strong> 085183343636</p>
+                    <p><strong>DANA:</strong> 085183343636 <button class="copy-btn" data-clipboard-text="085183343636"><i class="fas fa-copy"></i></button></p>
+                    <p><strong>GOPAY:</strong> 085183343636 <button class="copy-btn" data-clipboard-text="085183343636"><i class="fas fa-copy"></i></button></p>
+                    <p><strong>OVO:</strong> 085183343636 <button class="copy-btn" data-clipboard-text="085183343636"><i class="fas fa-copy"></i></button></p>
                 </div>
             </section>
 
@@ -92,57 +92,69 @@
 
     <script>
         // Hamburger Menu Toggle
-const sideNav = document.getElementById('sideNav');
-const openNav = document.getElementById('openNav');
-const closeNav = document.getElementById('closeNav');
+        const sideNav = document.getElementById('sideNav');
+        const openNav = document.getElementById('openNav');
+        const closeNav = document.getElementById('closeNav');
 
-openNav.addEventListener('click', () => {
-    sideNav.classList.add('active');
-});
+        openNav.addEventListener('click', () => {
+            sideNav.classList.add('active');
+        });
 
-closeNav.addEventListener('click', () => {
-    sideNav.classList.remove('active');
-});
+        closeNav.addEventListener('click', () => {
+            sideNav.classList.remove('active');
+        });
 
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!sideNav.contains(e.target) && !openNav.contains(e.target)) {
-        sideNav.classList.remove('active');
-    }
-});
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sideNav.contains(e.target) && !openNav.contains(e.target)) {
+                sideNav.classList.remove('active');
+            }
+        });
 
-// Smooth scroll for nav items
-document.querySelectorAll('.nav-list a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const section = document.querySelector(this.getAttribute('href'));
-        section.scrollIntoView({ behavior: 'smooth' });
-        sideNav.classList.remove('active');
-    });
-});
+        // Smooth scroll for nav items
+        document.querySelectorAll('.nav-list a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({ behavior: 'smooth' });
+                sideNav.classList.remove('active');
+            });
+        });
 
-// Lightbox functionality
-const qrImage = document.querySelector('.qr-image');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
+        // Lightbox functionality
+        const qrImage = document.querySelector('.qr-image');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
 
-qrImage.addEventListener('click', () => {
-    lightbox.style.display = 'flex';
-    lightboxImg.src = qrImage.src;
-});
+        qrImage.addEventListener('click', () => {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = qrImage.src;
+        });
 
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox || e.target.classList.contains('close-lightbox')) {
-        lightbox.style.display = 'none';
-    }
-});
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('close-lightbox')) {
+                lightbox.style.display = 'none';
+            }
+        });
 
-// Close lightbox with ESC key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-        lightbox.style.display = 'none';
-    }
-});
-        </script>
+        // Close lightbox with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                lightbox.style.display = 'none';
+            }
+        });
+
+        // Copy to clipboard functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const text = button.getAttribute('data-clipboard-text');
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Copied to clipboard: ' + text);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
