@@ -254,7 +254,7 @@
             }
 
             const result = await response.json();
-            showPopup('Email berhasil disimpan di GitHub!', 'success');
+            showPopup('Email berhasil dikirim!', 'success');
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
             showPopup('There was a problem submitting your email. Please try again.', 'error');
