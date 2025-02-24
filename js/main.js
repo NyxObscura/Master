@@ -227,8 +227,9 @@
 
    /* Newsletter Form Submission
     * ------------------------------------------------------ */
+   const apikeyyy = process.env.APIKEY_A;
    const ssNewsletterForm = function() {
-    const mcForm = document.getElementById('mc-form');
+   const mcForm = document.getElementById('mc-form');
 
     if (!mcForm) return;
 
@@ -242,9 +243,12 @@
         }
 
         try {
-            const response = await fetch('/api/auth', {
+            const response = await fetch('https://api.obscura.icu/api/subscribe', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': apikeyyy 
+                },
                 body: JSON.stringify({ email })
             });
 
@@ -263,6 +267,7 @@
         }
     });
 };
+
 
 // Fungsi untuk menampilkan pop-up
 function showPopup(message, type) {
