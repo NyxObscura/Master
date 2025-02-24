@@ -4757,7 +4757,7 @@ td:last-child {
     z-index: 1000;
     font-family: Arial, sans-serif;
     font-size: 14px;
-    width: 200px; /* Lebar lebih kecil */
+    width: 250px; /* Lebar lebih kecil */
     max-width: 90%; /* Tetap responsif di layar kecil */
 }
 
