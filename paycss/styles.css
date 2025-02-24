@@ -104,8 +104,7 @@ body {
 @media (min-width: 768px) {
     .main-header {
         justify-content: flex-start;
-        position: fixed;
-        left: 2rem;
+        left: 1rem;
         top: 1rem;
     }
 
