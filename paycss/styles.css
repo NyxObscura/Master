@@ -136,7 +136,7 @@ body {
 }
 @media (min-width: 768px) {
     .hamburger-btn {
-        position: fixed; /* Position hamburger button to the left on desktop */
+        position: static; /* Position hamburger button to the left on desktop */
         left: 1rem;
         top: 1rem;
     }
