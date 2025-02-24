@@ -5,5 +5,12 @@
     { "source": "/services", "destination": "/services.html" },
     { "source": "/blog", "destination": "/blog.html" },
     { "source": "/payment", "destination": "/payment.html" }
+  ],
+  "redirects": [
+    { "source": "/404", "destination": "/notfound/index.html", "statusCode": 308 }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/notfound/index.html", "status": 404 }
   ]
 }
