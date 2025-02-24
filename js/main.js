@@ -228,7 +228,8 @@
    /* Newsletter Form Submission
     * ------------------------------------------------------ */
    const ssNewsletterForm = function() {
-   const mcForm = document.getElementById('mc-form');
+
+    const mcForm = document.getElementById('mc-form');
 
     if (!mcForm) return;
 
@@ -242,12 +243,11 @@
         }
 
         try {
-            const apikeyyy = process.env.APIKEY_A;
             const response = await fetch('https://api.obscura.icu/api/subscribe', {
                 method: 'POST',
-                headers: {
+                headers: { 
                     'Content-Type': 'application/json',
-                    'x-api-key': apikeyyy 
+                    'x-apikey': process.env.APIKEY_A
                 },
                 body: JSON.stringify({ email })
             });
@@ -266,6 +266,7 @@
             showPopup('There was a problem submitting your email. Please try again.', 'error');
         }
     });
+
 };
 
 
