@@ -4742,19 +4742,22 @@ td:last-child {
 }
 .custom-popup {
     position: fixed;
-    bottom: 20px;
+    top: 70px; /* Letakkan di bawah bar pencarian */
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
     color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
+    padding: 8px 15px; /* Ukuran diperkecil */
+    border-radius: 3px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     font-family: Arial, sans-serif;
+    font-size: 14px; /* Font lebih kecil */
+    width: auto;
+    max-width: 300px; /* Batasi lebar maksimal */
 }
 
 .custom-popup.success {
@@ -4769,6 +4772,7 @@ td:last-child {
     background: none;
     border: none;
     color: white;
-    font-size: 20px;
+    font-size: 16px; /* Ukuran tombol close lebih kecil */
     cursor: pointer;
-	}
+    padding: 0;
+}
