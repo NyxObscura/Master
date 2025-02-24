@@ -107,7 +107,7 @@ body {
         align-items: center;
         justify-content: flex-start; /* Memastikan elemen sejajar ke kiri */
         padding-left: 1px; /* Mengurangi padding kiri untuk mendekatkan ke pinggir layar */
-        gap: 1rem; /* Mengatur jarak antara tombol hamburger dan teks "Payment Portal" */
+        gap: 3rem; /* Mengatur jarak antara tombol hamburger dan teks "Payment Portal" */
     }
 
     .hamburger-btn {
