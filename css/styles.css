@@ -4757,7 +4757,7 @@ td:last-child {
     z-index: 1000;
     font-family: Arial, sans-serif;
     font-size: 14px;
-    width: 250px; /* Lebar lebih kecil */
+    width: 200px; /* Lebar lebih kecil */
     max-width: 90%; /* Tetap responsif di layar kecil */
 }
 
@@ -4773,7 +4773,7 @@ td:last-child {
     background: none;
     border: none;
     color: white;
-    font-size: 18px; /* Perbesar tombol close */
+    font-size: 22px; /* Perbesar tombol close */
     cursor: pointer;
     padding: 0;
     line-height: 1;
