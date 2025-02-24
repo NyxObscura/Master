@@ -227,8 +227,7 @@
 
    /* Newsletter Form Submission
     * ------------------------------------------------------ */
-   const ssNewsletterForm = function() {
-
+const ssNewsletterForm = function() {
     const mcForm = document.getElementById('mc-form');
 
     if (!mcForm) return;
@@ -243,12 +242,9 @@
         }
 
         try {
-            const response = await fetch('https://api.obscura.icu/api/subscribe', {
+            const response = await fetch('/api/auth', {
                 method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'x-apikey': process.env.APIKEY_A
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
             });
 
@@ -266,9 +262,7 @@
             showPopup('There was a problem submitting your email. Please try again.', 'error');
         }
     });
-
 };
-
 
 // Fungsi untuk menampilkan pop-up
 function showPopup(message, type) {
