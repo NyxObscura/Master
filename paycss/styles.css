@@ -106,12 +106,12 @@ body {
         display: flex;
         align-items: center;
         justify-content: flex-start; /* Memastikan elemen sejajar ke kiri */
-        padding-left: 60px; /* Memberikan ruang untuk tombol hamburger */
+        padding-left: 10px; /* Memberikan ruang untuk tombol hamburger */
     }
 
     .hamburger-btn {
         position: static; /* Tombol hamburger tidak fixed, agar sejajar dengan teks */
-        margin-right: 1rem; /* Jarak antara tombol hamburger dan teks "Payment Portal" */
+        margin-right: 0.5rem; /* Jarak antara tombol hamburger dan teks "Payment Portal" */
     }
 
     .main-header h1 {
