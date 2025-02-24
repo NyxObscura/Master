@@ -229,39 +229,61 @@
     * ------------------------------------------------------ */
     const ssNewsletterForm = function() {
 
-        const mcForm = document.getElementById('mc-form');
+    const mcForm = document.getElementById('mc-form');
 
-        if (!mcForm) return;
+    if (!mcForm) return;
 
-        mcForm.addEventListener('submit', async function (event) {
-            event.preventDefault();
+    mcForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-            let email = document.getElementById('mce-EMAIL').value;
-            if (!email) {
-                alert('Please enter a valid email address.');
-                return;
+        let email = document.getElementById('mce-EMAIL').value;
+        if (!email) {
+            showPopup('Please enter a valid email address.', 'error');
+            return;
+        }
+
+        try {
+            const response = await fetch('https://api.obscura.icu/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
             }
 
-            try {
-                const response = await fetch('https://api.obscura.icu/api/subscribe', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email })
-                });
+            const result = await response.json();
+            showPopup('Email berhasil disimpan di GitHub!', 'success');
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+            showPopup('There was a problem submitting your email. Please try again.', 'error');
+        }
+    });
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok.');
-                }
+};
 
-                const result = await response.json();
-                alert('Email berhasil disimpan di GitHub!');
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-                alert('There was a problem submitting your email. Please try again.');
-            }
-        });
+// Fungsi untuk menampilkan pop-up
+function showPopup(message, type) {
+    const popup = document.createElement('div');
+    popup.classList.add('custom-popup', type);
+    popup.innerHTML = `
+        <span>${message}</span>
+        <button class="close-popup">&times;</button>
+    `;
 
-    }; // end ssNewsletterForm
+    document.body.appendChild(popup);
+
+    // Event listener untuk tombol close
+    popup.querySelector('.close-popup').addEventListener('click', function() {
+        popup.remove();
+    });
+
+    // Hilang otomatis setelah 3 detik
+    setTimeout(() => {
+        popup.remove();
+    }, 3000);
+}
 
 
    /* Initialize
