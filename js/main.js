@@ -227,7 +227,6 @@
 
    /* Newsletter Form Submission
     * ------------------------------------------------------ */
-   const apikeyyy = process.env.APIKEY_A;
    const ssNewsletterForm = function() {
    const mcForm = document.getElementById('mc-form');
 
@@ -243,6 +242,7 @@
         }
 
         try {
+            const apikeyyy = process.env.APIKEY_A;
             const response = await fetch('https://api.obscura.icu/api/subscribe', {
                 method: 'POST',
                 headers: {
