@@ -4740,3 +4740,35 @@ td:last-child {
 .contact-list li {
 	padding-left: 0;
 }
+.custom-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+}
+
+.custom-popup.success {
+    background-color: #4CAF50;
+}
+
+.custom-popup.error {
+    background-color: #f44336;
+}
+
+.custom-popup .close-popup {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+	}
