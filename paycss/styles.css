@@ -114,7 +114,7 @@ body {
     }
 
     .main-header h1 {
-        margin-left: 2rem; /* Memberikan jarak antara tombol hamburger dan teks "Payment Portal" */
+        margin-left: 1rem; /* Memberikan jarak antara tombol hamburger dan teks "Payment Portal" */
     }
 }
 
