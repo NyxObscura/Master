@@ -11,6 +11,6 @@
   ],
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/notfound/index.html", "status": 404 }
+    { "src": "/.*", "dest": "/notfound/index.html" }
   ]
 }
