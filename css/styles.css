@@ -4747,7 +4747,7 @@ td:last-child {
     transform: translateX(-50%);
     background-color: #3A3B35; /* Warna dengan kontras lebih terang dari #272822 */
     color: white;
-    padding: 10px 20px; /* Tambah panjang, tetapi tetap compact */
+    padding: 15px 25px; /* Tambah panjang, tetapi tetap compact */
     border-radius: 3px;
     display: flex;
     align-items: center;
