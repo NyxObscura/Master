@@ -1,8 +1,9 @@
+
 :root {
     --primary-color: #2563eb;
     --secondary-color: #1e40af;
-    --background-color: #f8fafc;
-    --text-color: #1e293b;
+    --background-color: #272822; /* Updated background color */
+    --text-color: #f8f8f2; /* Updated text color for better contrast */
     --border-color: #cbd5e1;
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
@@ -27,7 +28,7 @@ body {
     top: 0;
     width: 250px;
     height: 100%;
-    background: white;
+    background: #1e1e1e; /* Darker background for side nav */
     box-shadow: 2px 0 5px var(--shadow-color);
     transition: 0.3s;
     z-index: 1000;
@@ -69,7 +70,7 @@ body {
 }
 
 .nav-list li a:hover {
-    background-color: #f1f5f9;
+    background-color: #333; /* Darker hover background */
 }
 
 .nav-list li a i {
@@ -98,6 +99,29 @@ body {
     margin-right: 1rem;
     color: var(--text-color);
 }
+@media (min-width: 768px) {
+    .main-header {
+        justify-content: flex-start;
+        padding-left: 60px; /* Memberikan ruang untuk tombol hamburger */
+    }
+
+    .hamburger-btn {
+        position: fixed;
+        left: 1rem;
+        top: 1rem;
+    }
+
+    .main-header h1 {
+        margin-left: 2rem; /* Memberikan jarak antara tombol hamburger dan teks "Payment Portal" */
+    }
+}
+@media (min-width: 768px) {
+    .hamburger-btn {
+        position: fixed; /* Position hamburger button to the left on desktop */
+        left: 1rem;
+        top: 1rem;
+    }
+}
 
 .qr-section {
     text-align: center;
@@ -122,15 +146,26 @@ body {
 }
 
 .method-card {
-    background: white;
+    background: #1e1e1e;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
     margin-top: 1rem;
 }
 
+@media (min-width: 768px) {
+    .payment-methods {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .method-card {
+        margin-top: 0;
+    }
+}
 .support-card {
-    background: white;
+    background: #1e1e1e; /* Darker background for cards */
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
@@ -197,4 +232,27 @@ body {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
+}
+.copy-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.copy-btn:hover {
+    color: var(--secondary-color);
+}
+#bank, #ewallet {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+#support {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
 }
