@@ -106,7 +106,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: flex-start; /* Memastikan elemen sejajar ke kiri */
-        padding-left: 10px; /* Mengurangi padding kiri untuk mendekatkan ke pinggir layar */
+        padding-left: 20px; /* Mengurangi padding kiri untuk mendekatkan ke pinggir layar */
         gap: 0.5rem; /* Mengatur jarak antara tombol hamburger dan teks "Payment Portal" */
     }
 
