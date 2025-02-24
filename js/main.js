@@ -227,8 +227,7 @@
 
    /* Newsletter Form Submission
     * ------------------------------------------------------ */
-    const ssNewsletterForm = function() {
-
+   const ssNewsletterForm = function() {
     const mcForm = document.getElementById('mc-form');
 
     if (!mcForm) return;
@@ -243,7 +242,7 @@
         }
 
         try {
-            const response = await fetch('https://api.obscura.icu/api/subscribe', {
+            const response = await fetch('/api/auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
@@ -252,12 +251,10 @@
             const result = await response.json();
 
             if (!response.ok) {
-                // Menampilkan pesan error yang diberikan oleh backend
                 showPopup(result.error || 'There was a problem submitting your email.', 'error');
                 return;
             }
 
-            // Jika sukses, tampilkan pesan berhasil
             showPopup(result.message || 'Email berhasil disimpan di GitHub!', 'success');
 
         } catch (error) {
@@ -265,7 +262,6 @@
             showPopup('There was a problem submitting your email. Please try again.', 'error');
         }
     });
-
 };
 
 // Fungsi untuk menampilkan pop-up
