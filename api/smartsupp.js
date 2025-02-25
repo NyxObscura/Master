@@ -1,5 +1,5 @@
 module.exports = (req, res) => {
-  const allowedOrigin = "https://www.obscuraworks.com"; // Hanya domain ini yang boleh
+  const allowedOrigin = "https://obscuraworks.com"; // Hanya domain ini yang boleh
   const origin = req.headers.origin;
 
   if (origin !== allowedOrigin) {
