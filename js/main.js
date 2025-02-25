@@ -5,298 +5,302 @@
 
 (function(html) {
 
-    'use strict';
+	'use strict';
 
-   /* preloader
-    * -------------------------------------------------- */
-    const ssPreloader = function() {
+	/* preloader
+	 * -------------------------------------------------- */
+	const ssPreloader = function() {
 
-        const siteBody = document.querySelector('body');
-        const preloader = document.querySelector('#preloader');
-        if (!preloader) return;
+		const siteBody = document.querySelector('body');
+		const preloader = document.querySelector('#preloader');
+		if (!preloader) return;
 
-        html.classList.add('ss-preload');
-        
-        window.addEventListener('load', function() {
-            html.classList.remove('ss-preload');
-            html.classList.add('ss-loaded');
-            
-            preloader.addEventListener('transitionend', function afterTransition(e) {
-                if (e.target.matches('#preloader'))  {
-                    siteBody.classList.add('ss-show');
-                    e.target.style.display = 'none';
-                    preloader.removeEventListener(e.type, afterTransition);
-                }
-            });
-        });
+		html.classList.add('ss-preload');
 
-    }; // end ssPreloader
+		window.addEventListener('load', function() {
+			html.classList.remove('ss-preload');
+			html.classList.add('ss-loaded');
 
+			preloader.addEventListener('transitionend', function afterTransition(e) {
+				if (e.target.matches('#preloader')) {
+					siteBody.classList.add('ss-show');
+					e.target.style.display = 'none';
+					preloader.removeEventListener(e.type, afterTransition);
+				}
+			});
+		});
 
-   /* mobile menu
-    * ---------------------------------------------------- */ 
-    const ssMobileMenu = function() {
-
-        const toggleButton = document.querySelector('.s-header__menu-toggle');
-        const mainNavWrap = document.querySelector('.s-header__nav');
-        const siteBody = document.querySelector('body');
-
-        if (!(toggleButton && mainNavWrap)) return;
-
-        toggleButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            toggleButton.classList.toggle('is-clicked');
-            siteBody.classList.toggle('menu-is-open');
-        });
-
-        mainNavWrap.querySelectorAll('.s-header__nav a').forEach(function(link) {
-
-            link.addEventListener("click", function(event) {
-
-                // at 900px and below
-                if (window.matchMedia('(max-width: 900px)').matches) {
-                    toggleButton.classList.toggle('is-clicked');
-                    siteBody.classList.toggle('menu-is-open');
-                }
-            });
-        });
-
-        window.addEventListener('resize', function() {
-
-            // above 900px
-            if (window.matchMedia('(min-width: 901px)').matches) {
-                if (siteBody.classList.contains('menu-is-open')) siteBody.classList.remove('menu-is-open');
-                if (toggleButton.classList.contains('is-clicked')) toggleButton.classList.remove('is-clicked');
-            }
-        });
-
-    }; // end ssMobileMenu
+	}; // end ssPreloader
 
 
-   /* swiper
-    * ------------------------------------------------------ */ 
-    const ssSwiper = function() {
+	/* mobile menu
+	 * ---------------------------------------------------- */
+	const ssMobileMenu = function() {
 
-        const homeSliderSwiper = new Swiper('.home-slider', {
+		const toggleButton = document.querySelector('.s-header__menu-toggle');
+		const mainNavWrap = document.querySelector('.s-header__nav');
+		const siteBody = document.querySelector('body');
 
-            slidesPerView: 1,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                // when window width is > 400px
-                401: {
-                    slidesPerView: 1,
-                    spaceBetween: 20
-                },
-                // when window width is > 800px
-                801: {
-                    slidesPerView: 2,
-                    spaceBetween: 40
-                },
-                // when window width is > 1330px
-                1331: {
-                    slidesPerView: 3,
-                    spaceBetween: 48
-                },
-                // when window width is > 1773px
-                1774: {
-                    slidesPerView: 4,
-                    spaceBetween: 48
-                }
-            }
-        });
+		if (!(toggleButton && mainNavWrap)) return;
 
-        const pageSliderSwiper = new Swiper('.page-slider', {
+		toggleButton.addEventListener('click', function(e) {
+			e.preventDefault();
+			toggleButton.classList.toggle('is-clicked');
+			siteBody.classList.toggle('menu-is-open');
+		});
 
-            slidesPerView: 1,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                // when window width is > 400px
-                401: {
-                    slidesPerView: 1,
-                    spaceBetween: 20
-                },
-                // when window width is > 800px
-                801: {
-                    slidesPerView: 2,
-                    spaceBetween: 40
-                },
-                // when window width is > 1240px
-                1241: {
-                    slidesPerView: 3,
-                    spaceBetween: 48
-                }
-            }
-        });
+		mainNavWrap.querySelectorAll('.s-header__nav a').forEach(function(link) {
 
-    }; // end ssSwiper
+			link.addEventListener("click", function(event) {
 
-   /* alert boxes
-    * ------------------------------------------------------ */
-    const ssAlertBoxes = function() {
+				// at 900px and below
+				if (window.matchMedia('(max-width: 900px)').matches) {
+					toggleButton.classList.toggle('is-clicked');
+					siteBody.classList.toggle('menu-is-open');
+				}
+			});
+		});
 
-        const boxes = document.querySelectorAll('.alert-box');
-  
-        boxes.forEach(function(box){
+		window.addEventListener('resize', function() {
 
-            box.addEventListener('click', function(e) {
-                if (e.target.matches('.alert-box__close')) {
-                    e.stopPropagation();
-                    e.target.parentElement.classList.add('hideit');
+			// above 900px
+			if (window.matchMedia('(min-width: 901px)').matches) {
+				if (siteBody.classList.contains('menu-is-open')) siteBody.classList.remove('menu-is-open');
+				if (toggleButton.classList.contains('is-clicked')) toggleButton.classList.remove('is-clicked');
+			}
+		});
 
-                    setTimeout(function() {
-                        box.style.display = 'none';
-                    }, 500)
-                }
-            });
-        })
-
-    }; // end ssAlertBoxes
+	}; // end ssMobileMenu
 
 
-    /* Back to Top
-    * ------------------------------------------------------ */
-    const ssBackToTop = function() {
+	/* swiper
+	 * ------------------------------------------------------ */
+	const ssSwiper = function() {
 
-        const pxShow = 900;
-        const goTopButton = document.querySelector(".ss-go-top");
+		const homeSliderSwiper = new Swiper('.home-slider', {
 
-        if (!goTopButton) return;
+			slidesPerView: 1,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+			breakpoints: {
+				// when window width is > 400px
+				401: {
+					slidesPerView: 1,
+					spaceBetween: 20
+				},
+				// when window width is > 800px
+				801: {
+					slidesPerView: 2,
+					spaceBetween: 40
+				},
+				// when window width is > 1330px
+				1331: {
+					slidesPerView: 3,
+					spaceBetween: 48
+				},
+				// when window width is > 1773px
+				1774: {
+					slidesPerView: 4,
+					spaceBetween: 48
+				}
+			}
+		});
 
-        // Show or hide the button
-        if (window.scrollY >= pxShow) goTopButton.classList.add("link-is-visible");
+		const pageSliderSwiper = new Swiper('.page-slider', {
 
-        window.addEventListener('scroll', function() {
-            if (window.scrollY >= pxShow) {
-                if(!goTopButton.classList.contains('link-is-visible')) goTopButton.classList.add("link-is-visible")
-            } else {
-                goTopButton.classList.remove("link-is-visible")
-            }
-        });
+			slidesPerView: 1,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+			breakpoints: {
+				// when window width is > 400px
+				401: {
+					slidesPerView: 1,
+					spaceBetween: 20
+				},
+				// when window width is > 800px
+				801: {
+					slidesPerView: 2,
+					spaceBetween: 40
+				},
+				// when window width is > 1240px
+				1241: {
+					slidesPerView: 3,
+					spaceBetween: 48
+				}
+			}
+		});
 
-    }; // end ssBackToTop
+	}; // end ssSwiper
 
+	/* alert boxes
+	 * ------------------------------------------------------ */
+	const ssAlertBoxes = function() {
 
-   /* smoothscroll
-    * ------------------------------------------------------ */
-    const ssMoveTo = function() {
+		const boxes = document.querySelectorAll('.alert-box');
 
-        const easeFunctions = {
-            easeInQuad: function (t, b, c, d) {
-                t /= d;
-                return c * t * t + b;
-            },
-            easeOutQuad: function (t, b, c, d) {
-                t /= d;
-                return -c * t* (t - 2) + b;
-            },
-            easeInOutQuad: function (t, b, c, d) {
-                t /= d/2;
-                if (t < 1) return c/2*t*t + b;
-                t--;
-                return -c/2 * (t*(t-2) - 1) + b;
-            },
-            easeInOutCubic: function (t, b, c, d) {
-                t /= d/2;
-                if (t < 1) return c/2*t*t*t + b;
-                t -= 2;
-                return c/2*(t*t*t + 2) + b;
-            }
-        }
+		boxes.forEach(function(box) {
 
-        const triggers = document.querySelectorAll('.smoothscroll');
-        
-        const moveTo = new MoveTo({
-            tolerance: 0,
-            duration: 1200,
-            easing: 'easeInOutCubic',
-            container: window
-        }, easeFunctions);
+			box.addEventListener('click', function(e) {
+				if (e.target.matches('.alert-box__close')) {
+					e.stopPropagation();
+					e.target.parentElement.classList.add('hideit');
 
-        triggers.forEach(function(trigger) {
-            moveTo.registerTrigger(trigger);
-        });
+					setTimeout(function() {
+						box.style.display = 'none';
+					}, 500)
+				}
+			});
+		})
 
-    }; // end ssMoveTo
+	}; // end ssAlertBoxes
 
 
-   /* Newsletter Form Submission
-    * ------------------------------------------------------ */
-const ssNewsletterForm = function() {
-    const mcForm = document.getElementById('mc-form');
+	/* Back to Top
+	 * ------------------------------------------------------ */
+	const ssBackToTop = function() {
 
-    if (!mcForm) return;
+		const pxShow = 900;
+		const goTopButton = document.querySelector(".ss-go-top");
 
-    mcForm.addEventListener('submit', async function (event) {
-        event.preventDefault();
+		if (!goTopButton) return;
 
-        let email = document.getElementById('mce-EMAIL').value;
-        if (!email) {
-            showPopup('Please enter a valid email address.', 'error');
-            return;
-        }
+		// Show or hide the button
+		if (window.scrollY >= pxShow) goTopButton.classList.add("link-is-visible");
 
-        try {
-            const response = await fetch('/api/auth', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
+		window.addEventListener('scroll', function() {
+			if (window.scrollY >= pxShow) {
+				if (!goTopButton.classList.contains('link-is-visible')) goTopButton.classList.add("link-is-visible")
+			} else {
+				goTopButton.classList.remove("link-is-visible")
+			}
+		});
 
-            const result = await response.json();
+	}; // end ssBackToTop
 
-            if (!response.ok) {
-                showPopup(result.error || 'There was a problem submitting your email.', 'error');
-                return;
-            }
 
-            showPopup(result.message || 'Email berhasil disimpan di GitHub!', 'success');
+	/* smoothscroll
+	 * ------------------------------------------------------ */
+	const ssMoveTo = function() {
 
-        } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
-            showPopup('There was a problem submitting your email. Please try again.', 'error');
-        }
-    });
-};
+		const easeFunctions = {
+			easeInQuad: function(t, b, c, d) {
+				t /= d;
+				return c * t * t + b;
+			},
+			easeOutQuad: function(t, b, c, d) {
+				t /= d;
+				return -c * t * (t - 2) + b;
+			},
+			easeInOutQuad: function(t, b, c, d) {
+				t /= d / 2;
+				if (t < 1) return c / 2 * t * t + b;
+				t--;
+				return -c / 2 * (t * (t - 2) - 1) + b;
+			},
+			easeInOutCubic: function(t, b, c, d) {
+				t /= d / 2;
+				if (t < 1) return c / 2 * t * t * t + b;
+				t -= 2;
+				return c / 2 * (t * t * t + 2) + b;
+			}
+		}
 
-// Fungsi untuk menampilkan pop-up
-function showPopup(message, type) {
-    const popup = document.createElement('div');
-    popup.classList.add('custom-popup', type);
-    popup.innerHTML = `
+		const triggers = document.querySelectorAll('.smoothscroll');
+
+		const moveTo = new MoveTo({
+			tolerance: 0,
+			duration: 1200,
+			easing: 'easeInOutCubic',
+			container: window
+		}, easeFunctions);
+
+		triggers.forEach(function(trigger) {
+			moveTo.registerTrigger(trigger);
+		});
+
+	}; // end ssMoveTo
+
+
+	/* Newsletter Form Submission
+	 * ------------------------------------------------------ */
+	const ssNewsletterForm = function() {
+		const mcForm = document.getElementById('mc-form');
+
+		if (!mcForm) return;
+
+		mcForm.addEventListener('submit', async function(event) {
+			event.preventDefault();
+
+			let email = document.getElementById('mce-EMAIL').value;
+			if (!email) {
+				showPopup('Please enter a valid email address.', 'error');
+				return;
+			}
+
+			try {
+				const response = await fetch('/api/auth', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						email
+					})
+				});
+
+				const result = await response.json();
+
+				if (!response.ok) {
+					showPopup(result.error || 'There was a problem submitting your email.', 'error');
+					return;
+				}
+
+				showPopup(result.message || 'Email berhasil disimpan di GitHub!', 'success');
+
+			} catch (error) {
+				console.error('There was a problem with the fetch operation:', error);
+				showPopup('There was a problem submitting your email. Please try again.', 'error');
+			}
+		});
+	};
+
+	// Fungsi untuk menampilkan pop-up
+	function showPopup(message, type) {
+		const popup = document.createElement('div');
+		popup.classList.add('custom-popup', type);
+		popup.innerHTML = `
         <span>${message}</span>
         <button class="close-popup">&times;</button>
     `;
 
-    document.body.appendChild(popup);
+		document.body.appendChild(popup);
 
-    // Event listener untuk tombol close
-    popup.querySelector('.close-popup').addEventListener('click', function() {
-        popup.remove();
-    });
+		// Event listener untuk tombol close
+		popup.querySelector('.close-popup').addEventListener('click', function() {
+			popup.remove();
+		});
 
-    // Hilang otomatis setelah 3 detik
-    setTimeout(() => {
-        popup.remove();
-    }, 3000);
-}
+		// Hilang otomatis setelah 3 detik
+		setTimeout(() => {
+			popup.remove();
+		}, 3000);
+	}
 
-   /* Initialize
-    * ------------------------------------------------------ */
-    (function ssInit() {
+	/* Initialize
+	 * ------------------------------------------------------ */
+	(function ssInit() {
 
-        ssPreloader();
-        ssMobileMenu();
-        ssSwiper();
-        ssAlertBoxes();
-        ssMoveTo();
-        ssNewsletterForm(); // Initialize newsletter form submission
+		ssPreloader();
+		ssMobileMenu();
+		ssSwiper();
+		ssAlertBoxes();
+		ssMoveTo();
+		ssNewsletterForm(); // Initialize newsletter form submission
 
-    })();
+	})();
 
 })(document.documentElement);
