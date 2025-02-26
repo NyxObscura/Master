@@ -8,7 +8,6 @@
     { "source": "/(.*)", "destination": "/notfound/index.html" }
   ],
   "redirects": [
-    { "source": "/old-page", "destination": "/new-page", "statusCode": 301 },
     { "source": "/404", "destination": "/notfound/index.html", "statusCode": 404 }
   ]
 }
