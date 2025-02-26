@@ -4,7 +4,7 @@
     <script type="text/javascript">
   var _smartsupp = _smartsupp || {};
 
-  fetch('../api/smartsupp')
+  fetch('https://obscuraworks.com/api/smartsupp')
     .then(response => response.json())
     .then(data => {
       _smartsupp.key = data.key;
